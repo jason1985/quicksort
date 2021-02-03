@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+        
+        
+        const qs = (arr,l,r) => {
+            if(l >= r) return
+            
+            let p = partition(arr,l,r)
+            
+            qs(arr,l,p-1)
+            qs(arr,p+1,r)
+        }
+        
+        const partition = (arr,l,r) => {
+            let i = l - 1
+            
+            for(let j=l;j<r;j++) {  // we'll always use r as our pivot
+            if(arr[j]<arr[r]) {
+                i++
+                let temp = arr[i]
+                arr[i] = arr[j]
+                arr[j] = temp
+            }
+        }
+        i++
+        let temp = arr[i]
+        arr[i] = arr[r]
+        arr[r] = temp
+        
+        return i
+    }
+    let myArray = [2,4,6,7,1,13,56,29,91,17,22]
+    
+        console.log(myArray)
+        qs(myArray,0,myArray.length-1)
+
+        
+        console.log(myArray)
+
+    </script>
+</body>
+</html>
